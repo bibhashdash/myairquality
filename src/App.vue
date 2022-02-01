@@ -55,14 +55,11 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 0;
-  /* padding: 20px 40px; */
-  /* position: relative; */
-}
-.app-container {
-  /* position: absolute; */
   width: 90vw;
   height: 600px;
-  /* border: 1px solid red; */
+  border: 1px solid red;
+}
+.app-container {
   display: grid;
   grid-template-rows: 20% 80%;
 }
@@ -165,7 +162,7 @@ input:focus {
 .carousel-container {
   width: 90%;
   /* border: 1px solid rgba(0, 0, 0, 0.226); */
-  height: 55vh;
+
   /* margin-bottom: 2rem; */
 }
 
