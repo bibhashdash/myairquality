@@ -1,5 +1,5 @@
 <template>
-  <div class="slide-wrapper">
+  <div class="carousel-wrapper">
     <div class="slide-image">
       <img class="image" src="../assets/monk.png" />
     </div>
@@ -25,18 +25,15 @@ export default {
 </script>
 
 <style>
-.slide-wrapper {
-  width: 100%;
+.carousel-wrapper {
   display: flex;
   flex-direction: column;
 }
 .slide-image {
-  align-self: center;
-  width: 70%;
   text-align: center;
 }
 .image {
-  width: 100%;
+  width: 80%;
 }
 .slide-content {
   display: flex;
@@ -44,7 +41,6 @@ export default {
   align-items: center;
 }
 .slide-subdeck {
-  text-align: center;
   padding: 10px 10%;
   font-size: 0.8rem;
 }

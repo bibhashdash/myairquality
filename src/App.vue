@@ -16,12 +16,11 @@
     <main>
       <div class="search">
         <div class="search-bar">
-          <a href="#"><img class="icon" src="./assets/search.png" alt="" /></a>
-
+          <a href="#"><img class="icon" src="./assets/place.png" alt="" /></a>
           <form>
             <input placeholder="Search..." type="text" name="" id="" />
           </form>
-          <a href="#"><img class="icon" src="./assets/place.png" alt="" /></a>
+          <a href="#"><img class="icon" src="./assets/search.png" alt="" /></a>
         </div>
         <div class="location-id">
           <p>Current Location: Goole</p>
@@ -50,14 +49,13 @@ export default {
 
 <style>
 #app {
+  padding: 0 1rem;
   font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
+
   height: 550px;
-  /* border: 2px solid rgb(211, 72, 30); */
-  /* overflow-y: scroll; */
 }
 @media all and (min-height: 600px) and (max-height: 699px) {
   #app {
@@ -110,35 +108,31 @@ export default {
   height: 100%;
   grid-template-rows: 10% 90%;
   gap: 2rem;
-  /* border: 2px solid rgb(13, 14, 20); */
 }
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
-  padding: 0;
+h6,
+a,
+p {
   margin: 0;
+  padding: 0;
 }
 p,
 a {
-  margin: 0;
-  padding: 0;
   font-family: "Quicksand", sans-serif;
 }
 header {
-  /* width: 90%; */
   padding: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   align-self: center;
-  /* margin-bottom: 3rem; */
 }
 .brand {
-  /* width: 100px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,19 +156,13 @@ header {
 }
 .modal {
   align-self: flex-end;
+  font-size: 0.8rem;
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: space-evenly; */
-  /* margin-top: 2rem; */
-  /* border: 1px solid red; */
+  display: grid;
 }
-.search {
-  /* width: 90%; */
-}
+
 .search-bar {
   display: grid;
   grid-template-columns: 10% 80% 10%;
@@ -207,12 +195,6 @@ input:focus {
 }
 .location-id p {
   font-weight: bolder;
-}
-.carousel-container {
-  /* width: 90%; */
-  /* border: 1px solid rgba(0, 0, 0, 0.226); */
-
-  /* margin-bottom: 2rem; */
 }
 
 .cta {
