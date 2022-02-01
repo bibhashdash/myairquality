@@ -54,17 +54,62 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* width: 90vw; */
-  height: calc(100vh - 50px);
+  position: absolute;
+  height: 550px;
   /* border: 2px solid rgb(211, 72, 30); */
   /* overflow-y: scroll; */
 }
+@media all and (min-height: 600px) and (max-height: 699px) {
+  #app {
+    height: 600px;
+  }
+}
+@media all and (min-height: 700px) and (max-height: 799px) {
+  #app {
+    height: 700px;
+  }
+}
+@media all and (min-height: 800px) and (max-height: 899px) {
+  #app {
+    height: 800px;
+  }
+}
+@media all and (min-height: 900px) and (max-height: 999px) {
+  #app {
+    height: 900px;
+  }
+}
+@media all and (min-height: 1000px) and (max-height: 1099px) {
+  #app {
+    height: 1000px;
+  }
+}
 
+@media all and (min-height: 1100px) and (max-height: 1199px) {
+  #app {
+    height: 1100px;
+  }
+}
+@media all and (min-height: 1200px) and (max-height: 1299px) {
+  #app {
+    height: 1200px;
+  }
+}
+@media all and (min-height: 1300px) and (max-height: 1399px) {
+  #app {
+    height: 1300px;
+  }
+}
+@media all and (min-height: 1400px) and (max-height: 1499px) {
+  #app {
+    height: 1400px;
+  }
+}
 .app-container {
   display: grid;
   height: 100%;
   grid-template-rows: 10% 90%;
+  gap: 2rem;
   /* border: 2px solid rgb(13, 14, 20); */
 }
 h1,
@@ -83,7 +128,7 @@ a {
   font-family: "Quicksand", sans-serif;
 }
 header {
-  width: 90%;
+  /* width: 90%; */
   padding: 0;
   display: flex;
   flex-direction: row;
@@ -93,14 +138,14 @@ header {
   /* margin-bottom: 3rem; */
 }
 .brand {
-  width: auto;
+  /* width: 100px; */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .apptitle {
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.5rem;
   font-weight: bolder;
   background: -webkit-linear-gradient(
     bottom,
@@ -112,7 +157,7 @@ header {
 }
 
 .logo {
-  width: 60px;
+  width: 50px;
   margin-right: 5px;
 }
 .modal {
@@ -122,11 +167,13 @@ header {
 main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  /* align-items: center; */
+  /* justify-content: space-evenly; */
+  /* margin-top: 2rem; */
+  /* border: 1px solid red; */
 }
 .search {
-  width: 90%;
+  /* width: 90%; */
 }
 .search-bar {
   display: grid;
@@ -162,14 +209,14 @@ input:focus {
   font-weight: bolder;
 }
 .carousel-container {
-  width: 90%;
+  /* width: 90%; */
   /* border: 1px solid rgba(0, 0, 0, 0.226); */
 
   /* margin-bottom: 2rem; */
 }
 
 .cta {
-  width: 80%;
+  /* width: 80%; */
   display: flex;
   flex-direction: column;
   align-items: center;
