@@ -56,8 +56,8 @@ export default {
   align-items: center;
   padding: 0;
   width: 90vw;
-  height: 600px;
-  border: 1px solid red;
+  height: 95vh;
+  border: 1px solid rgb(0, 60, 255);
 }
 .app-container {
   display: grid;
@@ -176,7 +176,7 @@ input:focus {
   width: 70%;
   padding: 12px 15px;
   border-radius: 5px;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   border: none;
   font-family: "Quicksand", sans-serif;
   background: -webkit-linear-gradient(
