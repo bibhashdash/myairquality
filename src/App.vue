@@ -161,6 +161,7 @@ header {
 
 main {
   display: grid;
+  gap: 1rem;
 }
 
 .search-bar {
@@ -198,7 +199,6 @@ input:focus {
 }
 
 .cta {
-  /* width: 80%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -207,7 +207,7 @@ input:focus {
   width: 70%;
   padding: 12px 15px;
   border-radius: 5px;
-  /* margin-bottom: 1rem; */
+  margin-bottom: 1rem;
   border: none;
   font-family: "Quicksand", sans-serif;
   background: -webkit-linear-gradient(
