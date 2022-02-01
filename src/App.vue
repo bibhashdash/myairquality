@@ -56,12 +56,15 @@ export default {
   align-items: center;
   padding: 0;
   /* padding: 20px 40px; */
+  position: relative;
 }
 .app-container {
+  position: absolute;
   width: 90vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  height: 95vh;
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-rows: 10% 90%;
 }
 h1,
 h2,
@@ -120,7 +123,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  height: 95%;
+  /* height: 100%; */
 }
 .search {
   width: 90%;
@@ -190,7 +193,7 @@ input:focus {
 .cta-subdeck {
   color: rgb(179, 179, 179);
 }
-
+/* 
 @media all and (min-width: 768px) {
   .app-container {
     width: 700px;
@@ -198,5 +201,5 @@ input:focus {
     display: flex;
     flex-direction: column;
   }
-}
+} */
 </style>
