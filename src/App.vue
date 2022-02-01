@@ -56,15 +56,15 @@ export default {
   align-items: center;
   padding: 0;
   /* padding: 20px 40px; */
-  position: relative;
+  /* position: relative; */
 }
 .app-container {
-  position: absolute;
+  /* position: absolute; */
   width: 90vw;
-  height: 95vh;
+  height: 600px;
   /* border: 1px solid red; */
   display: grid;
-  grid-template-rows: 10% 90%;
+  grid-template-rows: 20% 80%;
 }
 h1,
 h2,
