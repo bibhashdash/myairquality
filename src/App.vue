@@ -54,14 +54,18 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0;
-  width: 90vw;
-  height: 95vh;
-  border: 1px solid rgb(0, 60, 255);
+
+  /* width: 90vw; */
+  height: calc(100vh - 50px);
+  /* border: 2px solid rgb(211, 72, 30); */
+  /* overflow-y: scroll; */
 }
+
 .app-container {
   display: grid;
-  grid-template-rows: 20% 80%;
+  height: 100%;
+  grid-template-rows: 10% 90%;
+  /* border: 2px solid rgb(13, 14, 20); */
 }
 h1,
 h2,
@@ -120,11 +124,9 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  /* height: 100%; */
 }
 .search {
   width: 90%;
-  /* margin-bottom: 2rem; */
 }
 .search-bar {
   display: grid;
@@ -190,13 +192,4 @@ input:focus {
 .cta-subdeck {
   color: rgb(179, 179, 179);
 }
-/* 
-@media all and (min-width: 768px) {
-  .app-container {
-    width: 700px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-} */
 </style>
