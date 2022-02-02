@@ -48,7 +48,7 @@
       </div>
       <div class="cta">
         <button class="btn btn-cta" @click.prevent="updateLocation">
-          Refresh current
+          Device Location
         </button>
         <!-- <p class="cta-subdeck">Swipe to view more</p> -->
       </div>
@@ -153,7 +153,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  max-width: 500px;
   height: 550px;
 }
 .hidden {
