@@ -4,7 +4,7 @@
       <img class="image" src="../assets/monk.png" />
     </div>
     <div class="slide-content">
-      <h2 class="slide-title">Ahhhh!</h2>
+      <h2 class="slide-title">Current Level: Low</h2>
       <p class="slide-subdeck">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem,
         corrupti omnis eligendi voluptates explicabo molestiae quae culpa

@@ -16,14 +16,16 @@
     <main>
       <div class="search">
         <div class="search-bar">
-          <a href="#"><img class="icon" src="./assets/place.png" alt="" /></a>
+          <a href="#" @click="getData"
+            ><img class="icon" src="./assets/place.png" alt=""
+          /></a>
           <form>
             <input placeholder="Search..." type="text" name="" id="" />
           </form>
           <a href="#"><img class="icon" src="./assets/search.png" alt="" /></a>
         </div>
         <div class="location-id">
-          <p>Current Location: Goole</p>
+          <p>Showing results for: Goole</p>
         </div>
       </div>
       <div class="carousel-container">
@@ -43,6 +45,23 @@ export default {
   name: "App",
   components: {
     Slide,
+  },
+  data() {
+    return {
+      lat: 0,
+      lon: 0,
+      co: 0,
+      nh3: 0,
+      no: 0,
+      no2: 0,
+      o3: 0,
+      pm2_5: 0,
+      pm10: 0,
+      so2: 0,
+    };
+  },
+  methods: {
+    getData() {},
   },
 };
 </script>
