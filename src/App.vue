@@ -33,7 +33,7 @@
               class="icon"
               src="./assets/search.png"
               alt=""
-              @click="citySearch"
+              @click.prevent="citySearch"
           /></a>
         </div>
         <div class="location-id">
@@ -47,7 +47,7 @@
         <Slide :aqi="aqi" />
       </div>
       <div class="cta">
-        <button class="btn btn-cta" @click="updateLocation">
+        <button class="btn btn-cta" @click.prevent="updateLocation">
           Refresh current
         </button>
         <!-- <p class="cta-subdeck">Swipe to view more</p> -->
@@ -84,7 +84,7 @@ export default {
       this.aqi = null;
       console.log(x, y);
       fetch(
-        `http://api.openweathermap.org/data/2.5/air_pollution?lat=${x}&lon=${y}&appid=d2a37cccedad8fffd47126ec42ab187f`
+        `https://api.openweathermap.org/data/2.5/air_pollution?lat=${x}&lon=${y}&appid=d2a37cccedad8fffd47126ec42ab187f`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -119,7 +119,7 @@ export default {
       this.maqData([this.lat, this.lon]);
       // reverse geocode to get the city name from the coordinates
       fetch(
-        `http://api.openweathermap.org/geo/1.0/reverse?lat=${this.lat}&lon=${this.lon}&limit=1&appid=d2a37cccedad8fffd47126ec42ab187f`
+        `https://api.openweathermap.org/geo/1.0/reverse?lat=${this.lat}&lon=${this.lon}&limit=1&appid=d2a37cccedad8fffd47126ec42ab187f`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -133,7 +133,7 @@ export default {
       this.lat = 0;
       this.lon = 0;
       fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${this.citySearchString}&limit=1&appid=d2a37cccedad8fffd47126ec42ab187f`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${this.citySearchString}&limit=1&appid=d2a37cccedad8fffd47126ec42ab187f`
       )
         .then((response) => response.json())
         .then((data) => {
