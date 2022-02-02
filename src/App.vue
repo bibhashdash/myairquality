@@ -16,24 +16,41 @@
     <main>
       <div class="search">
         <div class="search-bar">
-          <a href="#" @click="getData"
+          <a href="#" @click="updateLocation"
             ><img class="icon" src="./assets/place.png" alt=""
           /></a>
-          <form>
-            <input placeholder="Search..." type="text" name="" id="" />
+          <form @submit.prevent="citySearch">
+            <input
+              placeholder="Search by city name..."
+              type="text"
+              name=""
+              id=""
+              v-model="citySearchString"
+            />
           </form>
-          <a href="#"><img class="icon" src="./assets/search.png" alt="" /></a>
+          <a href="#"
+            ><img
+              class="icon"
+              src="./assets/search.png"
+              alt=""
+              @click="citySearch"
+          /></a>
         </div>
         <div class="location-id">
-          <p>Showing results for: Goole</p>
+          <p v-if="currentLocationDisplay">
+            Showing results for: {{ currentLocationDisplay }}
+          </p>
+          <p v-else>No location chosen</p>
         </div>
       </div>
       <div class="carousel-container">
-        <Slide />
+        <Slide :aqi="aqi" />
       </div>
       <div class="cta">
-        <button class="btn btn-cta">Refresh</button>
-        <p class="cta-subdeck">Swipe to view more</p>
+        <button class="btn btn-cta" @click="updateLocation">
+          Refresh current
+        </button>
+        <!-- <p class="cta-subdeck">Swipe to view more</p> -->
       </div>
     </main>
   </div>
@@ -48,20 +65,83 @@ export default {
   },
   data() {
     return {
+      citySearchString: "",
       lat: 0,
       lon: 0,
-      co: 0,
-      nh3: 0,
-      no: 0,
       no2: 0,
       o3: 0,
       pm2_5: 0,
       pm10: 0,
       so2: 0,
+      currentLocationDisplay: "",
+      aqi: null,
     };
   },
+
   methods: {
-    getData() {},
+    // fetch the air quality data
+    maqData([x, y]) {
+      this.aqi = null;
+      console.log(x, y);
+      fetch(
+        `http://api.openweathermap.org/data/2.5/air_pollution?lat=${x}&lon=${y}&appid=d2a37cccedad8fffd47126ec42ab187f`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          // console.log(data);
+          this.aqi = data.list[0].main.aqi;
+          console.log(this.aqi);
+        });
+    },
+
+    // getting coordinates from device location API
+    // Using getCoords() to get latitude and longitude
+    // then use await with updateLocation() to update data fields
+    async getCoords() {
+      return new Promise((resolve, reject) => {
+        if (!navigator.geolocation) {
+          reject("Geolocation unavailable on this device");
+        }
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            // returning lat and lon as an array
+            resolve([position.coords.latitude, position.coords.longitude]);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      });
+    },
+    async updateLocation() {
+      // destructuring array into lat and lon data fields
+      [this.lat, this.lon] = await this.getCoords();
+      this.maqData([this.lat, this.lon]);
+      // reverse geocode to get the city name from the coordinates
+      fetch(
+        `http://api.openweathermap.org/geo/1.0/reverse?lat=${this.lat}&lon=${this.lon}&limit=1&appid=d2a37cccedad8fffd47126ec42ab187f`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          this.currentLocationDisplay = data[0].name;
+        });
+    },
+
+    // getting city coordinates from user string input
+    citySearch() {
+      this.currentLocationDisplay = this.citySearchString;
+      this.lat = 0;
+      this.lon = 0;
+      fetch(
+        `http://api.openweathermap.org/geo/1.0/direct?q=${this.citySearchString}&limit=1&appid=d2a37cccedad8fffd47126ec42ab187f`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          return [(this.lat = data[0].lat), (this.lon = data[0].lon)];
+        })
+        .then(([x, y]) => this.maqData([x, y]));
+      this.citySearchString = "";
+    },
   },
 };
 </script>
@@ -75,6 +155,9 @@ export default {
   align-items: center;
 
   height: 550px;
+}
+.hidden {
+  display: none;
 }
 @media all and (min-height: 600px) and (max-height: 699px) {
   #app {
