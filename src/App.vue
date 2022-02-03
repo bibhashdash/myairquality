@@ -9,8 +9,10 @@
         />
         <h1 class="apptitle">My Air Quality</h1>
       </div>
-      <div class="modal">
-        <p>Readme</p>
+      <div class="contact">
+        <a href="mailto:bibhash@nineblockmedia.com"
+          ><img class="icon" src="./assets/email.png" alt=""
+        /></a>
       </div>
     </header>
     <main>
@@ -44,12 +46,13 @@
         </div>
       </div>
       <div class="carousel-container">
-        <Slide :aqi="aqi" />
+        <Slide :aqi="aqi" :pollutants="pollutants" />
       </div>
       <div class="cta">
         <button class="btn btn-cta" @click.prevent="updateLocation">
           Device Location
         </button>
+        <p class="footer-text">Copyright 2022 Bibhash Dash</p>
       </div>
     </main>
   </div>
@@ -67,11 +70,7 @@ export default {
       citySearchString: "",
       lat: 0,
       lon: 0,
-      no2: 0,
-      o3: 0,
-      pm2_5: 0,
-      pm10: 0,
-      so2: 0,
+      pollutants: {},
       currentLocationDisplay: "",
       aqi: null,
     };
@@ -81,15 +80,15 @@ export default {
     // fetch the air quality data
     maqData([x, y]) {
       this.aqi = null;
-      console.log(x, y);
+      // console.log(x, y);
       fetch(
         `https://api.openweathermap.org/data/2.5/air_pollution?lat=${x}&lon=${y}&appid=d2a37cccedad8fffd47126ec42ab187f`
       )
         .then((response) => response.json())
         .then((data) => {
-          // console.log(data);
           this.aqi = data.list[0].main.aqi;
-          console.log(this.aqi);
+          // copy the pollutants data object from API to the pollutants object in data inside app component
+          this.pollutants = JSON.parse(JSON.stringify(data.list[0].components));
         });
     },
 
@@ -247,6 +246,7 @@ header {
     rgb(0, 253, 148),
     rgb(4, 154, 255)
   );
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -255,21 +255,17 @@ header {
   width: 50px;
   margin-right: 5px;
 }
-.modal {
+.contact {
   align-self: flex-end;
-  font-size: 0.8rem;
+  width: 50px;
 }
 
 main {
   display: grid;
-  grid-template-rows: auto auto 10%;
+  grid-template-rows: auto auto auto;
   gap: 1rem;
 }
-/* .search,
-.carousel-container,
-.cta {
-  border: 1px solid black;
-} */
+
 .search-bar {
   display: grid;
   grid-template-columns: 10% 80% 10%;
@@ -326,7 +322,8 @@ input:focus {
   font-weight: bolder;
 }
 
-.cta-subdeck {
+.footer-text {
+  font-size: 0.5rem;
   color: rgb(179, 179, 179);
 }
 </style>
