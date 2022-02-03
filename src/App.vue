@@ -15,6 +15,12 @@
     </header>
     <main>
       <div class="search">
+        <div class="location-id">
+          <p v-if="currentLocationDisplay">
+            Showing results for: {{ currentLocationDisplay }}
+          </p>
+          <p v-else>No location chosen</p>
+        </div>
         <div class="search-bar">
           <a href="#" @click="updateLocation"
             ><img class="icon" src="./assets/place.png" alt=""
@@ -36,12 +42,6 @@
               @click.prevent="citySearch"
           /></a>
         </div>
-        <div class="location-id">
-          <p v-if="currentLocationDisplay">
-            Showing results for: {{ currentLocationDisplay }}
-          </p>
-          <p v-else>No location chosen</p>
-        </div>
       </div>
       <div class="carousel-container">
         <Slide :aqi="aqi" />
@@ -50,7 +50,6 @@
         <button class="btn btn-cta" @click.prevent="updateLocation">
           Device Location
         </button>
-        <!-- <p class="cta-subdeck">Swipe to view more</p> -->
       </div>
     </main>
   </div>
@@ -263,7 +262,7 @@ header {
 
 main {
   display: grid;
-  grid-template-rows: 10% auto auto;
+  grid-template-rows: auto auto 10%;
   gap: 1rem;
 }
 /* .search,
@@ -278,9 +277,9 @@ main {
   border: 1px solid rgb(190, 190, 190);
   justify-items: center;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   border-radius: 30px;
-  margin: 0 0 5px;
+  margin: 15px 0;
 }
 form,
 input {
@@ -300,6 +299,8 @@ input:focus {
 }
 .location-id {
   padding: 0 20px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 .location-id p {
   font-weight: bolder;

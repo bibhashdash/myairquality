@@ -47,32 +47,30 @@ export default {
     return {
       imageNumber: 0,
       showDefaultView: true,
+      showPollutantInfo: false,
     };
   },
-  // beforeMount() {
-  //   this.imageNumber = 0;
-  // },
 
   computed: {
     aqiLevelDisplay() {
       if (this.aqi === 1) {
-        this.showDefaultView = false;
+        this.showPollutantInfo = true;
         this.imageNumber = 1;
         return "Good";
       } else if (this.aqi === 2) {
-        this.showDefaultView = false;
+        this.showPollutantInfo = true;
         this.imageNumber = 1;
         return "Fair";
       } else if (this.aqi === 3) {
-        this.showDefaultView = false;
+        this.showPollutantInfo = true;
         this.imageNumber = 2;
         return "Moderate";
       } else if (this.aqi === 4) {
-        this.showDefaultView = false;
+        this.showPollutantInfo = true;
         this.imageNumber = 3;
         return "Poor";
       } else if (this.aqi === 5) {
-        this.showDefaultView = false;
+        this.showPollutantInfo = true;
         this.imageNumber = 3;
         return "Very Poor";
       }
