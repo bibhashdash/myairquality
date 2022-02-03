@@ -23,7 +23,7 @@
               >{{ currentLocationDisplay }}, {{ country }}</span
             >
           </p>
-          <p v-else>No location chosen</p>
+          <p v-else><span class="location-display">No location chosen</span></p>
         </div>
         <div class="search-bar">
           <a href="#" @click="updateLocation"
@@ -125,7 +125,7 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           this.currentLocationDisplay = data[0].name;
           this.country = data[0].country;
         });
