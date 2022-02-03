@@ -19,7 +19,10 @@
       <div class="search">
         <div class="location-id">
           <p v-if="currentLocationDisplay">
-            Showing results for: {{ currentLocationDisplay }}
+            Showing results for:
+            <span class="location-display"
+              >{{ currentLocationDisplay }}, {{ country }}</span
+            >
           </p>
           <p v-else>No location chosen</p>
         </div>
@@ -73,6 +76,7 @@ export default {
       pollutants: {},
       currentLocationDisplay: "",
       aqi: null,
+      country: "",
     };
   },
 
@@ -121,7 +125,9 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           this.currentLocationDisplay = data[0].name;
+          this.country = data[0].country;
         });
     },
 
@@ -135,6 +141,8 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
+          // console.log(data);
+          this.country = data[0].country;
           return [(this.lat = data[0].lat), (this.lon = data[0].lon)];
         })
         .then(([x, y]) => this.maqData([x, y]));
@@ -301,7 +309,9 @@ input:focus {
 .location-id p {
   font-weight: bolder;
 }
-
+.location-display {
+  color: rgb(4, 154, 255);
+}
 .cta {
   display: flex;
   flex-direction: column;

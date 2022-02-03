@@ -139,7 +139,7 @@ export default {
 }
 .pollutant-name {
   font-weight: bolder;
-  color: cornflowerblue;
+  color: rgb(4, 154, 255)
 }
 .pollutant-level {
   font-weight: bolder;
