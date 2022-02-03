@@ -6,20 +6,30 @@
         class="image"
         src="../assets/atmosphere.png"
       />
-      <img v-if="imageNumber === 1" class="image" src="../assets/monk.png" />
+      <img
+        v-else-if="imageNumber === 1"
+        class="image"
+        src="../assets/monk.png"
+      />
 
       <img
-        v-if="imageNumber === 2"
+        v-else-if="imageNumber === 2"
         class="image"
         src="../assets/raised-eyebrow.png"
       />
-      <img v-if="imageNumber === 3" class="image" src="../assets/heart.png" />
+      <img
+        v-else-if="imageNumber === 3"
+        class="image"
+        src="../assets/heart.png"
+      />
     </div>
+
     <div class="slide-content">
-      <!-- <h2 v-if="showDefaultView === true" class="slide-title">
-        What's the air like?
-      </h2> -->
-      <h2 class="slide-title">Air Quality: {{ aqiLevelDisplay }}</h2>
+      <div class="slide-title">
+        <h2>Air Quality:</h2>
+        <h2>{{ aqiLevelDisplay }}</h2>
+      </div>
+
       <p class="slide-subdeck">
         You can search for the current air quality levels for any city across
         the world or simply check your current location. Geolocation must be
@@ -39,26 +49,30 @@ export default {
       showDefaultView: true,
     };
   },
+  // beforeMount() {
+  //   this.imageNumber = 0;
+  // },
+
   computed: {
     aqiLevelDisplay() {
       if (this.aqi === 1) {
-        this.showDefaultView = !this.showDefaultView;
+        this.showDefaultView = false;
         this.imageNumber = 1;
         return "Good";
       } else if (this.aqi === 2) {
-        this.showDefaultView = !this.showDefaultView;
+        this.showDefaultView = false;
         this.imageNumber = 1;
         return "Fair";
       } else if (this.aqi === 3) {
-        this.showDefaultView = !this.showDefaultView;
+        this.showDefaultView = false;
         this.imageNumber = 2;
         return "Moderate";
       } else if (this.aqi === 4) {
-        this.showDefaultView = !this.showDefaultView;
+        this.showDefaultView = false;
         this.imageNumber = 3;
         return "Poor";
       } else if (this.aqi === 5) {
-        this.showDefaultView = !this.showDefaultView;
+        this.showDefaultView = false;
         this.imageNumber = 3;
         return "Very Poor";
       }
@@ -72,17 +86,28 @@ export default {
 .carousel-wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
 }
 .slide-image {
   text-align: center;
 }
 .image {
-  width: 80%;
+  width: 60%;
 }
 .slide-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.slide-title {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.slide-title h2 {
+  margin: 0 10px;
 }
 .slide-subdeck {
   padding: 10px 10%;

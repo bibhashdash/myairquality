@@ -263,9 +263,14 @@ header {
 
 main {
   display: grid;
+  grid-template-rows: 10% auto auto;
   gap: 1rem;
 }
-
+/* .search,
+.carousel-container,
+.cta {
+  border: 1px solid black;
+} */
 .search-bar {
   display: grid;
   grid-template-columns: 10% 80% 10%;
