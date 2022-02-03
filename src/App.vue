@@ -19,7 +19,6 @@
       <div class="search">
         <div class="location-id">
           <p v-if="currentLocationDisplay">
-            Showing results for:
             <span class="location-display"
               >{{ currentLocationDisplay }}, {{ country }}</span
             >
@@ -116,6 +115,7 @@ export default {
       });
     },
     async updateLocation() {
+      this.country = "";
       // destructuring array into lat and lon data fields
       [this.lat, this.lon] = await this.getCoords();
       this.maqData([this.lat, this.lon]);
@@ -136,6 +136,7 @@ export default {
       this.currentLocationDisplay = this.citySearchString;
       this.lat = 0;
       this.lon = 0;
+      this.country = "";
       fetch(
         `https://api.openweathermap.org/geo/1.0/direct?q=${this.citySearchString}&limit=1&appid=d2a37cccedad8fffd47126ec42ab187f`
       )
@@ -145,7 +146,10 @@ export default {
           this.country = data[0].country;
           return [(this.lat = data[0].lat), (this.lon = data[0].lon)];
         })
-        .then(([x, y]) => this.maqData([x, y]));
+        .then(([x, y]) => this.maqData([x, y]))
+        .catch((error) => {
+          this.currentLocationDisplay = "Invalid search query!";
+        });
       this.citySearchString = "";
     },
   },
@@ -311,6 +315,7 @@ input:focus {
 }
 .location-display {
   color: rgb(4, 154, 255);
+  font-size: 1.5rem;
 }
 .cta {
   display: flex;
