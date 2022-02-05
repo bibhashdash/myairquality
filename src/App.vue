@@ -1,20 +1,5 @@
 <template>
   <div class="app-container">
-    <header>
-      <div class="brand">
-        <img
-          class="logo"
-          src="../src/assets/maqlogo.png"
-          alt="my air quality logo"
-        />
-        <h1 class="apptitle">My Air Quality</h1>
-      </div>
-      <div class="contact">
-        <a href="mailto:bibhash@nineblockmedia.com"
-          ><img class="icon" src="./assets/email.png" alt=""
-        /></a>
-      </div>
-    </header>
     <main>
       <div class="search">
         <div class="location-id">
@@ -23,7 +8,9 @@
               >{{ currentLocationDisplay }}, {{ country }}</span
             >
           </p>
-          <p v-else><span class="location-display">No location chosen</span></p>
+          <p v-else>
+            <span class="location-display no-location">No location chosen</span>
+          </p>
         </div>
         <div class="search-bar">
           <a href="#" @click="updateLocation"
@@ -158,69 +145,22 @@ export default {
 
 <style>
 #app {
-  padding: 0 1rem;
-  font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 500px;
+
   height: 550px;
 }
 .hidden {
   display: none;
 }
-@media all and (min-height: 600px) and (max-height: 699px) {
-  #app {
-    height: 600px;
-  }
-}
-@media all and (min-height: 700px) and (max-height: 799px) {
-  #app {
-    height: 700px;
-  }
-}
-@media all and (min-height: 800px) and (max-height: 899px) {
-  #app {
-    height: 800px;
-  }
-}
-@media all and (min-height: 900px) and (max-height: 999px) {
-  #app {
-    height: 900px;
-  }
-}
-@media all and (min-height: 1000px) and (max-height: 1099px) {
-  #app {
-    height: 1000px;
-  }
-}
 
-@media all and (min-height: 1100px) and (max-height: 1199px) {
-  #app {
-    height: 1100px;
-  }
-}
-@media all and (min-height: 1200px) and (max-height: 1299px) {
-  #app {
-    height: 1200px;
-  }
-}
-@media all and (min-height: 1300px) and (max-height: 1399px) {
-  #app {
-    height: 1300px;
-  }
-}
-@media all and (min-height: 1400px) and (max-height: 1499px) {
-  #app {
-    height: 1400px;
-  }
-}
-.app-container {
+/* .app-container {
   display: grid;
   height: 100%;
   grid-template-rows: 10% 90%;
   gap: 2rem;
-}
+} */
 h1,
 h2,
 h3,
@@ -236,45 +176,10 @@ p,
 a {
   font-family: "Quicksand", sans-serif;
 }
-header {
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  align-self: center;
-}
-.brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.apptitle {
-  margin: 0;
-  font-size: 0.5rem;
-  font-weight: bolder;
-  background: -webkit-linear-gradient(
-    bottom,
-    rgb(0, 253, 148),
-    rgb(4, 154, 255)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.logo {
-  width: 50px;
-  margin-right: 5px;
-}
-.contact {
-  align-self: flex-end;
-  width: 50px;
-}
 
 main {
   display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto 10%;
   gap: 1rem;
 }
 
@@ -316,6 +221,11 @@ input:focus {
 .location-display {
   color: rgb(4, 154, 255);
   font-size: 1.5rem;
+}
+.no-location {
+  font-weight: lighter;
+  font-size: smaller;
+  color: rgb(149, 149, 149);
 }
 .cta {
   display: flex;

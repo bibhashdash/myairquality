@@ -15,10 +15,20 @@
       <img
         v-else-if="imageNumber === 2"
         class="image"
-        src="../assets/raised-eyebrow.png"
+        src="../assets/like.png"
       />
       <img
         v-else-if="imageNumber === 3"
+        class="image"
+        src="../assets/raised-eyebrow.png"
+      />
+      <img
+        v-else-if="imageNumber === 4"
+        class="image"
+        src="../assets/concern.png"
+      />
+      <img
+        v-else-if="imageNumber === 5"
         class="image"
         src="../assets/heart.png"
       />
@@ -64,7 +74,10 @@ export default {
       showPollutantInfo: false,
     };
   },
-
+// beforeMount(){
+//   this.imageNumber = 0;
+//   this.showPollutantInfo = false;
+// },
   computed: {
     aqiLevelDisplay() {
       if (this.aqi === 1) {
@@ -73,19 +86,19 @@ export default {
         return "Good";
       } else if (this.aqi === 2) {
         this.showPollutantInfo = true;
-        this.imageNumber = 1;
+        this.imageNumber = 2;
         return "Fair";
       } else if (this.aqi === 3) {
         this.showPollutantInfo = true;
-        this.imageNumber = 2;
+        this.imageNumber = 3;
         return "Moderate";
       } else if (this.aqi === 4) {
         this.showPollutantInfo = true;
-        this.imageNumber = 3;
+        this.imageNumber = 4;
         return "Poor";
       } else if (this.aqi === 5) {
         this.showPollutantInfo = true;
-        this.imageNumber = 3;
+        this.imageNumber = 5;
         return "Very Poor";
       }
     },
@@ -111,12 +124,14 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 .slide-title {
   /* width: 100%; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 .slide-title h2 {
   margin: 0 10px;
