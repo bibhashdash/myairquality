@@ -3,7 +3,10 @@
     <main>
       <div class="search">
         <div class="location-id">
-          <p v-if="currentLocationDisplay">
+          <p v-if="validSearch === false">
+            <span class="location-display">{{ currentLocationDisplay }}</span>
+          </p>
+          <p v-else-if="validSearch && currentLocationDisplay">
             <span class="location-display"
               >{{ currentLocationDisplay }}, {{ country }}</span
             >
@@ -35,7 +38,7 @@
         </div>
       </div>
       <div class="carousel-container">
-        <Slide :aqi="aqi" :pollutants="pollutants" />
+        <Slide :aqi="aqi" :pollutants="pollutants" :validSearch="validSearch" />
       </div>
       <div class="cta">
         <button class="btn btn-cta" @click.prevent="updateLocation">
@@ -63,6 +66,7 @@ export default {
       currentLocationDisplay: "",
       aqi: null,
       country: "",
+      validSearch: true,
     };
   },
 
@@ -114,6 +118,7 @@ export default {
         .then((data) => {
           // console.log(data);
           this.currentLocationDisplay = data[0].name;
+
           this.country = data[0].country;
         });
     },
@@ -131,11 +136,13 @@ export default {
         .then((data) => {
           // console.log(data);
           this.country = data[0].country;
+
           return [(this.lat = data[0].lat), (this.lon = data[0].lon)];
         })
         .then(([x, y]) => this.maqData([x, y]))
         .catch((error) => {
-          this.currentLocationDisplay = "Invalid search query!";
+          this.currentLocationDisplay = "Invalid";
+          this.validSearch = false;
         });
       this.citySearchString = "";
     },
@@ -149,6 +156,7 @@ export default {
   flex-direction: column;
   align-items: center;
 
+  width: 100%;
   height: 550px;
 }
 .hidden {

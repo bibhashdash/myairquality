@@ -32,6 +32,11 @@
         class="image"
         src="../assets/heart.png"
       />
+      <img
+        v-else-if="imageNumber === 6"
+        class="image"
+        src="../assets/error.png"
+      />
     </div>
 
     <div  class="slide-content">
@@ -52,6 +57,7 @@
     <div  class="slide-content">
       <div class="slide-title">
         <h2 v-if="!showPollutantInfo" >What's the air like?</h2>
+        <!-- <h2 v-if="!showPollutantInfo" >What's the air like?</h2> -->
       </div>
 
       <p v-if="!showPollutantInfo" class="results">
@@ -66,7 +72,7 @@
 <script>
 export default {
   name: "CarouselSlide",
-  props: ["aqi", "pollutants"],
+  props: ["aqi", "pollutants", "validSearch"],
   data() {
     return {
       imageNumber: 0,
@@ -101,7 +107,14 @@ export default {
         this.imageNumber = 5;
         return "Very Poor";
       }
+      else if (this.validSearch === false){
+        this.imageNumber = 6;
+        this.showPollutantInfo = false;
+        return "Error!";
+      }
     },
+
+    
   },
   methods: {},
 };
