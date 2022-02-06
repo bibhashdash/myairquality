@@ -153,6 +153,7 @@ export default {
         .catch((error) => {
           this.currentLocationDisplay = "Invalid Search Query";
           this.validSearch = false;
+          this.defaultView = false;
           console.log(this.validSearch);
           return this.validSearch;
         });
