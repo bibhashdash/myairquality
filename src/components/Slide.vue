@@ -111,6 +111,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0.5rem 0;
 }
 .slide-title {
   /* width: 100%; */

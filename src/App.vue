@@ -81,6 +81,7 @@ export default {
     // fetch the air quality data
     maqData([x, y]) {
       (this.defaultView = false), (this.aqi = null);
+      this.validSearch = true;
 
       fetch(
         `https://api.openweathermap.org/data/2.5/air_pollution?lat=${x}&lon=${y}&appid=d2a37cccedad8fffd47126ec42ab187f`
@@ -133,6 +134,7 @@ export default {
 
     // getting city coordinates from user string input
     citySearch() {
+      this.validSearch = true;
       this.currentLocationDisplay = this.citySearchString;
       this.lat = 0;
       this.lon = 0;
@@ -151,6 +153,8 @@ export default {
         .catch((error) => {
           this.currentLocationDisplay = "Invalid Search Query";
           this.validSearch = false;
+          console.log(this.validSearch);
+          return this.validSearch;
         });
       this.citySearchString = "";
     },
