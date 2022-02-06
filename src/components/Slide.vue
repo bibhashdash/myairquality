@@ -1,122 +1,96 @@
 <template>
   <div class="carousel-wrapper">
-    <div class="slide-image">
-      <img
-        v-if="imageNumber === 0"
-        class="image"
-        src="../assets/atmosphere.png"
-      />
-      <img
-        v-else-if="imageNumber === 1"
-        class="image"
-        src="../assets/monk.png"
-      />
-
-      <img
-        v-else-if="imageNumber === 2"
-        class="image"
-        src="../assets/like.png"
-      />
-      <img
-        v-else-if="imageNumber === 3"
-        class="image"
-        src="../assets/raised-eyebrow.png"
-      />
-      <img
-        v-else-if="imageNumber === 4"
-        class="image"
-        src="../assets/concern.png"
-      />
-      <img
-        v-else-if="imageNumber === 5"
-        class="image"
-        src="../assets/heart.png"
-      />
-      <img
-        v-else-if="imageNumber === 6"
-        class="image"
-        src="../assets/error.png"
-      />
-    </div>
-
-    <div  class="slide-content">
-      <div class="slide-title">
-        <h2 v-if="showPollutantInfo" >Air Quality:</h2>
-        <h2 >{{ aqiLevelDisplay }}</h2>
+    <template v-if="defaultView === true">
+      <div class="slide-image">
+        <img class="image" src="../assets/atmosphere.png" alt="" />
       </div>
-
-      
-      <p  class="results">
-        <ul v-if="showPollutantInfo" class="results-grid">
-          <li class="results-list-item" v-for="(level, pollutant) in pollutants" :key="level">
-             <span class="pollutant-name">{{pollutant.toUpperCase()}}</span> : <span class="pollutant-level">{{level}}</span>
-          </li>
-        </ul>
-      </p>
-    </div>
-    <div  class="slide-content">
-      <div class="slide-title">
-        <h2 v-if="!showPollutantInfo" >What's the air like?</h2>
-        <!-- <h2 v-if="!showPollutantInfo" >What's the air like?</h2> -->
+      <div class="slide-content">
+        <h2>What's the air like?</h2>
+        <p class="results">
+          You can search for the current air quality levels for any city across
+          the world or simply check your current location. Geolocation must be
+          'allowed' on your device.
+        </p>
       </div>
+    </template>
 
-      <p v-if="!showPollutantInfo" class="results">
-        You can search for the current air quality levels for any city across
-        the world or simply check your current location. Geolocation must be
-        'allowed' on your device.
-      </p>
-    </div>
+    <template v-else-if="defaultView === false && validSearch === true">
+      <div class="slide-image">
+        <img class="image" v-if="imageId === 1" src="../assets/1.png" alt="" />
+        <img class="image" v-if="imageId === 2" src="../assets/2.png" alt="" />
+        <img class="image" v-if="imageId === 3" src="../assets/3.png" alt="" />
+        <img class="image" v-if="imageId === 4" src="../assets/4.png" alt="" />
+        <img class="image" v-if="imageId === 5" src="../assets/5.png" alt="" />
+        <div class="slide-content">
+          <h2>Air Quality: {{ aqiLevelDisplay }}</h2>
+          <div class="results">
+            <ul class="results-grid">
+              <li
+                class="results-list-item"
+                v-for="(level, pollutant) in pollutants"
+                :key="level"
+              >
+                <span class="pollutant-name">{{
+                  pollutant.toUpperCase()
+                }}</span>
+                : <span class="pollutant-level">{{ level }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template v-else-if="defaultView === false && validSearch === false">
+      <div class="slide-image">
+        <img class="image" src="../assets/error.png" alt="" />
+      </div>
+      <div class="slide-content">
+        <h2>Whoops!</h2>
+        <p class="results">
+          Looks like there was an error getting that result. Very likely the
+          search query you made does not match a city or location on the
+          database. Give it another go!
+        </p>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
 export default {
   name: "CarouselSlide",
-  props: ["aqi", "pollutants", "validSearch"],
+  props: ["aqi", "pollutants", "validSearch", "defaultView"],
   data() {
     return {
-      imageNumber: 0,
-
-      showPollutantInfo: false,
+      imageId: null,
     };
   },
-// beforeMount(){
-//   this.imageNumber = 0;
-//   this.showPollutantInfo = false;
-// },
+
   computed: {
     aqiLevelDisplay() {
       if (this.aqi === 1) {
-        this.showPollutantInfo = true;
-        this.imageNumber = 1;
+        this.imageId = 1;
         return "Good";
-      } else if (this.aqi === 2) {
-        this.showPollutantInfo = true;
-        this.imageNumber = 2;
+      }
+      if (this.aqi === 2) {
+        this.imageId = 2;
         return "Fair";
-      } else if (this.aqi === 3) {
-        this.showPollutantInfo = true;
-        this.imageNumber = 3;
+      }
+      if (this.aqi === 3) {
+        this.imageId = 3;
         return "Moderate";
-      } else if (this.aqi === 4) {
-        this.showPollutantInfo = true;
-        this.imageNumber = 4;
+      }
+      if (this.aqi === 4) {
+        this.imageId = 4;
         return "Poor";
-      } else if (this.aqi === 5) {
-        this.showPollutantInfo = true;
-        this.imageNumber = 5;
+      }
+      if (this.aqi === 5) {
+        this.imageId = 5;
         return "Very Poor";
       }
-      else if (this.validSearch === false){
-        this.imageNumber = 6;
-        this.showPollutantInfo = false;
-        return "Error!";
-      }
     },
-
-    
   },
-  methods: {},
 };
 </script>
 
@@ -137,7 +111,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }
 .slide-title {
   /* width: 100%; */
@@ -167,7 +140,7 @@ export default {
 }
 .pollutant-name {
   font-weight: bolder;
-  color: rgb(4, 154, 255)
+  color: rgb(4, 154, 255);
 }
 .pollutant-level {
   font-weight: bolder;

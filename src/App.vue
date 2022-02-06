@@ -2,19 +2,6 @@
   <div class="app-container">
     <main>
       <div class="search">
-        <div class="location-id">
-          <p v-if="validSearch === false">
-            <span class="location-display">{{ currentLocationDisplay }}</span>
-          </p>
-          <p v-else-if="validSearch && currentLocationDisplay">
-            <span class="location-display"
-              >{{ currentLocationDisplay }}, {{ country }}</span
-            >
-          </p>
-          <p v-else>
-            <span class="location-display no-location">No location chosen</span>
-          </p>
-        </div>
         <div class="search-bar">
           <a href="#" @click="updateLocation"
             ><img class="icon" src="./assets/place.png" alt=""
@@ -37,8 +24,27 @@
           /></a>
         </div>
       </div>
+
       <div class="carousel-container">
-        <Slide :aqi="aqi" :pollutants="pollutants" :validSearch="validSearch" />
+        <div class="location-id">
+          <p v-if="validSearch === false">
+            <span class="location-display">{{ currentLocationDisplay }}</span>
+          </p>
+          <p v-else-if="validSearch && currentLocationDisplay">
+            <span class="location-display"
+              >{{ currentLocationDisplay }}, {{ country }}</span
+            >
+          </p>
+          <p v-else>
+            <span class="location-display no-location">No location chosen</span>
+          </p>
+        </div>
+        <Slide
+          :aqi="aqi"
+          :pollutants="pollutants"
+          :validSearch="validSearch"
+          :defaultView="defaultView"
+        />
       </div>
       <div class="cta">
         <button class="btn btn-cta" @click.prevent="updateLocation">
@@ -67,19 +73,21 @@ export default {
       aqi: null,
       country: "",
       validSearch: true,
+      defaultView: true,
     };
   },
 
   methods: {
     // fetch the air quality data
     maqData([x, y]) {
-      this.aqi = null;
-      // console.log(x, y);
+      (this.defaultView = false), (this.aqi = null);
+
       fetch(
         `https://api.openweathermap.org/data/2.5/air_pollution?lat=${x}&lon=${y}&appid=d2a37cccedad8fffd47126ec42ab187f`
       )
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           this.aqi = data.list[0].main.aqi;
           // copy the pollutants data object from API to the pollutants object in data inside app component
           this.pollutants = JSON.parse(JSON.stringify(data.list[0].components));
@@ -141,7 +149,7 @@ export default {
         })
         .then(([x, y]) => this.maqData([x, y]))
         .catch((error) => {
-          this.currentLocationDisplay = "Invalid";
+          this.currentLocationDisplay = "Invalid Search Query";
           this.validSearch = false;
         });
       this.citySearchString = "";
@@ -157,18 +165,11 @@ export default {
   align-items: center;
 
   width: 100%;
-  height: 550px;
 }
 .hidden {
   display: none;
 }
 
-/* .app-container {
-  display: grid;
-  height: 100%;
-  grid-template-rows: 10% 90%;
-  gap: 2rem;
-} */
 h1,
 h2,
 h3,
