@@ -167,7 +167,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  /* border: 1px solid red; */
   width: 100%;
 }
 .hidden {
@@ -244,6 +244,8 @@ input:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* border: 1px solid red; */
+  margin-top: 20px;
 }
 .btn {
   width: 70%;
