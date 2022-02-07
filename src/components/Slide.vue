@@ -2,7 +2,11 @@
   <div class="carousel-wrapper">
     <template v-if="defaultView === true">
       <div class="slide-image">
-        <img class="image" src="../assets/atmosphere.png" alt="" />
+        <img
+          class="image"
+          src="../assets/atmosphere.png"
+          alt="default view icon"
+        />
       </div>
       <div class="slide-content">
         <h2>What's the air like?</h2>
@@ -16,11 +20,36 @@
 
     <template v-else-if="defaultView === false && validSearch === true">
       <div class="slide-image">
-        <img class="image" v-if="imageId === 1" src="../assets/1.png" alt="" />
-        <img class="image" v-if="imageId === 2" src="../assets/2.png" alt="" />
-        <img class="image" v-if="imageId === 3" src="../assets/3.png" alt="" />
-        <img class="image" v-if="imageId === 4" src="../assets/4.png" alt="" />
-        <img class="image" v-if="imageId === 5" src="../assets/5.png" alt="" />
+        <img
+          class="image"
+          v-if="imageId === 1"
+          src="../assets/1.png"
+          alt="air quality good icon"
+        />
+        <img
+          class="image"
+          v-if="imageId === 2"
+          src="../assets/2.png"
+          alt="air quality fair icon"
+        />
+        <img
+          class="image"
+          v-if="imageId === 3"
+          src="../assets/3.png"
+          alt="air quality moderate icon"
+        />
+        <img
+          class="image"
+          v-if="imageId === 4"
+          src="../assets/4.png"
+          alt="air quality poor icon"
+        />
+        <img
+          class="image"
+          v-if="imageId === 5"
+          src="../assets/5.png"
+          alt="air quality very poor icon"
+        />
         <div class="slide-content">
           <h2>Air Quality: {{ aqiLevelDisplay }}</h2>
           <div class="results">
